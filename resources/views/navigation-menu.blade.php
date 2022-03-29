@@ -150,6 +150,9 @@
             <x-jet-nav-link href="{{ route('financials') }}" :active="request()->routeIs('financials')">
                 {{ __('Financials') }}
             </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('physicals') }}" :active="request()->routeIs('physicals')">
+                {{ __('Physical Performance') }}
+            </x-jet-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

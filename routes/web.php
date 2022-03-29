@@ -16,11 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/', Dashboard::class)->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('financials', Financials::class)->name('financials');
 Route::middleware(['auth:sanctum', 'verified'])->get('physical-performance', PhysicalPerformance::class)->name('physicals');
