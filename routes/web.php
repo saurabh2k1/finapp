@@ -22,5 +22,5 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
 
-Route::get('financials', Financials::class)->name('financials');
-Route::get('physical-performance', PhysicalPerformance::class)->name('physicals');
+Route::middleware(['auth:sanctum', 'verified'])->get('financials', Financials::class)->name('financials');
+Route::middleware(['auth:sanctum', 'verified'])->get('physical-performance', PhysicalPerformance::class)->name('physicals');
