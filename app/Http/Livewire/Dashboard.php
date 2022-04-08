@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Financial;
+use App\Models\Mcap;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Livewire\Component;
 use Livewire\Livewire;
@@ -13,6 +14,9 @@ class Dashboard extends Component
     public $fYear = '';
     public $years = '';
     public $oldYear = '';
+    public $mcap = '';
+    public $mcap_date = '';
+    public $networth = '';
 
 
     public function mount()
@@ -25,7 +29,12 @@ class Dashboard extends Component
     public function render()
     {
 
-        
+        $mcap_query = Mcap::latest()->first();
+
+        $this->mcap = $mcap_query->mcap;
+        $this->mcap_date = $mcap_query->ason_date;
+        $this->networth = $mcap_query->networth;
+
 
         $financials = Financial::where('year', $this->fYear)
             ->where('qtr', 'like', 'Q%')
@@ -44,45 +53,68 @@ class Dashboard extends Component
             ->setXAxisCategories(['Q1', 'Q2', 'Q3', 'Q4'])
             ->withGrid();
 
-        $PATChartModel = LivewireCharts::columnChartModel()
-            ->setTitle('Profit After Tax for Year ' . $this->fYear)
+        $multiColumnRevenueChart = LivewireCharts::multiColumnChartModel()
             ->setAnimated($this->firstRun)
-            ->setLegendVisibility(false)
+            ->setTitle('Revenue')
+            ->multiColumn()
+            ->setLegendVisibility(true)
             ->setDataLabelsEnabled(false)
-            ->setColumnWidth(20)
+            ->setColumnWidth(40)
+            ->setXAxisCategories(['Q1', 'Q2', 'Q3', 'Q4'])
+            ->withGrid();
+        $multiColumnExpenseChart = LivewireCharts::multiColumnChartModel()
+            ->setAnimated($this->firstRun)
+            ->setTitle('Expense')
+            ->multiColumn()
+            ->setLegendVisibility(true)
+            ->setDataLabelsEnabled(false)
+            ->setColumnWidth(40)
+            ->setXAxisCategories(['Q1', 'Q2', 'Q3', 'Q4'])
             ->withGrid();
 
-        $PBTChartModel = LivewireCharts::lineChartModel()
-            ->setTitle('Year ' . $this->fYear)
-            ->setAnimated($this->firstRun)
-            ->multiLine()
-            ->withLegend()
-            ->setLegendVisibility(true)
-            ->setDataLabelsEnabled(true)
-            ->setSmoothCurve()
-            ->setXAxisVisible(true);
-        // ->sparklined();
-        $RevenueChartModel = LivewireCharts::lineChartModel()
-            ->setTitle('Revenue for the Year ' . $this->fYear)
-            ->setAnimated($this->firstRun)
-            ->multiLine()
-            ->withLegend()
-            ->setLegendVisibility(true)
-            ->setDataLabelsEnabled(true)
-            ->setSmoothCurve()
-            ->setXAxisVisible(true);
+        // $PATChartModel = LivewireCharts::columnChartModel()
+        //     ->setTitle('Profit After Tax for Year ' . $this->fYear)
+        //     ->setAnimated($this->firstRun)
+        //     ->setLegendVisibility(false)
+        //     ->setDataLabelsEnabled(false)
+        //     ->setColumnWidth(20)
+        //     ->withGrid();
+
+        // $PBTChartModel = LivewireCharts::lineChartModel()
+        //     ->setTitle('Year ' . $this->fYear)
+        //     ->setAnimated($this->firstRun)
+        //     ->multiLine()
+        //     ->withLegend()
+        //     ->setLegendVisibility(true)
+        //     ->setDataLabelsEnabled(true)
+        //     ->setSmoothCurve()
+        //     ->setXAxisVisible(true);
+        // // ->sparklined();
+        // $RevenueChartModel = LivewireCharts::lineChartModel()
+        //     ->setTitle('Revenue for the Year ' . $this->fYear)
+        //     ->setAnimated($this->firstRun)
+        //     ->multiLine()
+        //     ->withLegend()
+        //     ->setLegendVisibility(true)
+        //     ->setDataLabelsEnabled(true)
+        //     ->setSmoothCurve()
+        //     ->setXAxisVisible(true);
         foreach ($oldFinancials as $finanacial) {
             $multiColumnChart->addSeriesColumn($this->oldYear, $finanacial->qtr, $finanacial->PAT, '#6fda55');
+            $multiColumnRevenueChart->addSeriesColumn($this->oldYear, $finanacial->qtr, $finanacial->revenue, '#6fda55');
+            $multiColumnExpenseChart->addSeriesColumn($this->oldYear, $finanacial->qtr, $finanacial->expense, '#6fda55');
         }
         foreach ($financials as $finanacial) {
             // $PATChartModel->addColumn($finanacial->qtr, $finanacial->PAT, '#f6ad55');
             // // $PBTChartModel->addPoint($finanacial->qtr, $finanacial->PBT);
-            $PBTChartModel->addSeriesPoint('PAT', $finanacial->qtr, $finanacial->PAT, '#f6ad55');
-            $PBTChartModel->addSeriesPoint('PBT', $finanacial->qtr, $finanacial->PBT, '#f6ff55');
-            $PBTChartModel->addSeriesPoint('EBITDA', $finanacial->qtr, $finanacial->EBITDA, '#f64455');
-            $RevenueChartModel->addSeriesPoint('Revenue', $finanacial->qtr, $finanacial->revenue);
-            $RevenueChartModel->addSeriesPoint('Expense', $finanacial->qtr, $finanacial->expense);
+            // $PBTChartModel->addSeriesPoint('PAT', $finanacial->qtr, $finanacial->PAT, '#f6ad55');
+            // $PBTChartModel->addSeriesPoint('PBT', $finanacial->qtr, $finanacial->PBT, '#f6ff55');
+            // $PBTChartModel->addSeriesPoint('EBITDA', $finanacial->qtr, $finanacial->EBITDA, '#f64455');
+            // $RevenueChartModel->addSeriesPoint('Revenue', $finanacial->qtr, $finanacial->revenue);
+            // $RevenueChartModel->addSeriesPoint('Expense', $finanacial->qtr, $finanacial->expense);
             $multiColumnChart->addSeriesColumn($this->fYear, $finanacial->qtr, $finanacial->PAT, '#6fda55');
+            $multiColumnRevenueChart->addSeriesColumn($this->fYear, $finanacial->qtr, $finanacial->revenue, '#6fda55');
+            $multiColumnExpenseChart->addSeriesColumn($this->fYear, $finanacial->qtr, $finanacial->expense, '#6fda55');
         }
 
         
@@ -90,9 +122,10 @@ class Dashboard extends Component
         return view('livewire.dashboard')
             ->with([
                 'multiColumnChart' => $multiColumnChart,
-                // 'PATChartModel' => $PATChartModel,
-                'PBTChartModel' => $PBTChartModel,
-                'RevenueChartModel' => $RevenueChartModel
+                'multiColumnRevenueChart' => $multiColumnRevenueChart,
+                'multiColumnExpenseChart' => $multiColumnExpenseChart,
+                // 'PBTChartModel' => $PBTChartModel,
+                // 'RevenueChartModel' => $RevenueChartModel
             ]);
     }
 

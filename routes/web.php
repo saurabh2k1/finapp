@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Financials;
+use App\Http\Livewire\Mcap;
 use App\Http\Livewire\PhysicalPerformance;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', Dashboard::class)->nam
 
 Route::middleware(['auth:sanctum', 'verified'])->get('financials', Financials::class)->name('financials');
 Route::middleware(['auth:sanctum', 'verified'])->get('physical-performance', PhysicalPerformance::class)->name('physicals');
+Route::middleware(['auth:sanctum', 'verified'])->get('mcap', Mcap::class)->name('mcaps');
