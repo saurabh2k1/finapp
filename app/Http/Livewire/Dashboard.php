@@ -21,10 +21,14 @@ class Dashboard extends Component
 
     public function mount()
     {
-        $this->fYear = (date('m') < 4) ? (date('Y') - 1) . '-'  . date('y') : date('Y') . '-' . (date('y') - 1);
-        $this->oldYear = (date('m') < 4) ? (date('Y') - 2) . '-'  . date('y') - 1 : date('Y') - 1 . '-' . (date('y') - 2);
+        $this->fYear = (date('m') < 7) ? (date('Y') - 1) . '-'  . date('y') : date('Y') . '-' . (date('y') - 1);
+        $this->oldYear = (date('m') < 7) ? (date('Y') - 2) . '-'  . date('y') - 1 : date('Y') - 1 . '-' . (date('y') - 2);
         $this->years = Financial::select('year')->distinct()->pluck('year');
+
+        // $this->fYear = '2021-22';
+        // $this->oldYear = '2020-21';
     }
+
 
     public function render()
     {
@@ -35,10 +39,12 @@ class Dashboard extends Component
         $this->mcap_date = $mcap_query->ason_date;
         $this->networth = $mcap_query->networth;
 
+        // $financials = Financial::orderBy('year', 'DESC')->orderBy('qtr', 'DESC')->limit(4)->get();
 
         $financials = Financial::where('year', $this->fYear)
             ->where('qtr', 'like', 'Q%')
             ->orderBy('qtr', 'ASC')->get();
+
         $oldFinancials = Financial::where('year', $this->oldYear)
             ->where('qtr', 'like', 'Q%')
             ->orderBy('qtr', 'ASC')->get();

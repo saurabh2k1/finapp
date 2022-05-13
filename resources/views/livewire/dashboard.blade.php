@@ -9,7 +9,7 @@
         <div class="rounded-lg border shadow-md p-4 sm:p-8 bg-white  dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center space-x-4 py-2">
                 <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    <p class="text-md font-medium text-gray-900 truncate dark:text-white">
                        Market Cap 
                     </p>
                     <p class="text-xs text-gray-500 truncate dark:text-gray-400">
@@ -20,12 +20,15 @@
                     {{ number_format($mcap, 0, '.', ',')}} Cr 
                 </div>
             </div>
+            <div class="float-right items-baseline text-xs text-blue-900">
+                <a href="{{ route('mcaps')}}">More ...</a>
+            </div>
           
         </div>
         <div class="rounded-lg border shadow-md p-4 sm:p-8 bg-white  dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center space-x-4 py-2">
                 <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    <p class="text-md font-medium text-gray-900 truncate dark:text-white">
                        Networth
                     </p>
                     <p class="text-xs text-gray-500 truncate dark:text-gray-400">
@@ -36,12 +39,14 @@
                     {{ number_format($networth, 0, '.', ',')}} Cr 
                 </div>
             </div>
-          
+            <div class="float-right items-baseline text-xs text-blue-900">
+                <a href="{{ route('mcaps')}}">More ...</a>
+            </div>
         </div>
         <div class="rounded-lg border shadow-md p-4 sm:p-8 bg-white  dark:bg-gray-800 dark:border-gray-700">
             <div class="flex items-center space-x-4 py-2">
                 <div class="flex-1 min-w-0">
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                    <p class="text-md font-medium text-gray-900 truncate dark:text-white">
                        Throughput 
                     </p>
                     <p class="text-xs text-gray-500 truncate dark:text-gray-400">
@@ -89,6 +94,21 @@
            </div>
            <div class="flow-root">
                 <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                   <a href="https://petronetlng.in/PDF/AFR310322(Finance).pdf" target="_blank"> Quarter 4 & Year  </a>
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    Ended 31st March 2022
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                <a href="https://petronetlng.in/PDF/AFR310322(Finance).pdf" target="_blank" class="text-blue-600 hover:underline dark:text-blue-500"> Open </a>
+                            </div>
+                        </div>
+                    </li>
                     <li class="py-3 sm:py-4">
                         <div class="flex items-center space-x-4">
                             <div class="flex-1 min-w-0">
