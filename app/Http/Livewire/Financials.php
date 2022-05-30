@@ -5,10 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\Financial;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Financials extends Component
 {
-    
+    use WireToast;
     use WithPagination;
 
     // public $financials; 
@@ -56,6 +57,7 @@ class Financials extends Component
     public function create()
     {
         $this->_resetInputFields();
+        
         $this->openModal();
 
     }
@@ -96,6 +98,9 @@ class Financials extends Component
 
         Financial::updateOrCreate(['id' => $this->financial_id], $validatedData);
 
+        toast()
+        ->success($this->financial_id ? 'Record Updated Successfully.' : 'Record Created Successfully.', 'Message')
+        ->push();
         session()->flash('message', $this->financial_id ? 'Financial Updated Successfully.' : 'Financial Created Successfully.');
 
         $this->closeModal();
@@ -122,6 +127,9 @@ class Financials extends Component
     public function delete($id)
     {
         Financial::find($id)->delete();
+        toast()
+        ->warning('Record Deleted Successfully.', 'App')
+        ->push();
         session()->flash('message', 'Financial Deleted Successfully.');
     }
 

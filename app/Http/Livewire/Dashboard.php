@@ -7,9 +7,13 @@ use App\Models\Mcap;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Livewire\Component;
 use Livewire\Livewire;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Dashboard extends Component
 {
+    use WireToast;
+
+
     public $firstRun = true;
     public $fYear = '';
     public $years = '';
@@ -33,6 +37,9 @@ class Dashboard extends Component
     public function render()
     {
 
+        
+
+       
         $mcap_query = Mcap::latest()->first();
 
         $this->mcap = $mcap_query->mcap;

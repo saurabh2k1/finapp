@@ -5,10 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\Mcap as ModelsMcap;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Usernotnull\Toast\Concerns\WireToast;
 
 class Mcap extends Component
 {
-    use WithPagination;
+    use WithPagination, WireToast;
 
     public $ason_date, $share_no, $share_price, $mcap, $networth;
     public $perPage, $mcap_id;
@@ -57,6 +58,9 @@ class Mcap extends Component
 
         ModelsMcap::updateOrCreate(['id' => $this->mcap_id], $validatedData);
 
+        toast()
+        ->success($this->mcap_id ? 'Record Updated Successfully.' : 'Record Created Successfully.', 'Message')
+        ->push();
         session()->flash('message', $this->mcap_id ? 'Financial Updated Successfully.' : 'Financial Created Successfully.');
 
         $this->closeModal();
