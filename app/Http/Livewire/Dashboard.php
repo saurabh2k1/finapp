@@ -52,8 +52,8 @@ class Dashboard extends Component
         $this->mcap = $mcap_query->mcap;
         $this->mcap_date = $mcap_query->ason_date;
         $this->networth = $mcap_query->networth;
-        $this->throughput = $throughput_data->throughput;
-        $this->throughput_period = $throughput_data->period;
+        $this->throughput = $throughput_data?->throughput;
+        $this->throughput_period = $throughput_data?->period;
 
         // $financials = Financial::orderBy('year', 'DESC')->orderBy('qtr', 'DESC')->limit(4)->get();
 
