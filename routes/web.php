@@ -4,6 +4,8 @@ use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Financials;
 use App\Http\Livewire\Mcap;
 use App\Http\Livewire\PhysicalPerformance;
+use App\Http\Livewire\TechnicalPerformance;
+use App\Http\Livewire\UserManagement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('/', Dashboard::class)->name('home');
 
+    Route::get('financials', Financials::class)->name('financials');
+    Route::get('physical-performance', PhysicalPerformance::class)->name('physicals');
+    Route::get('mcap', Mcap::class)->name('mcaps');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', Dashboard::class)->name('dashboard');
-Route::middleware(['auth:sanctum', 'verified'])->get('/', Dashboard::class)->name('home');
+    Route::get('/user-management', UserManagement::class)->name('user-management');
+    Route::get('/technical-performance', TechnicalPerformance::class)->name('technical-performance');
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('financials', Financials::class)->name('financials');
-Route::middleware(['auth:sanctum', 'verified'])->get('physical-performance', PhysicalPerformance::class)->name('physicals');
-Route::middleware(['auth:sanctum', 'verified'])->get('mcap', Mcap::class)->name('mcaps');

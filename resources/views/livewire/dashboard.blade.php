@@ -1,4 +1,4 @@
-<div class="container mx-auto space-y-4 p-4 sm:p-0 mt-8">
+<div class="container mx-auto space-y-4 p-4 sm:p-0 mt-2">
     {{-- <select wire:model="fYear" wire:onchange="changeYear($event.target.value)" >
         <option value=""> -- Select Year -- </option>
         @foreach ($years as $year)
@@ -50,14 +50,52 @@
                        Throughput 
                     </p>
                     <p class="text-xs text-gray-500 truncate dark:text-gray-400">
-                        upto 31st December, 2021
+                        For {{$throughput_period}}
                     </p>
                 </div>
                 <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                    657 TBTU 
+                    {{$throughput}}
                 </div>
             </div>
-          
+            <div class="float-right items-baseline text-xs text-blue-900">
+                <a href="{{ route('technical-performance')}}">More ...</a>
+            </div>
+        </div>
+        <div class="rounded-lg border shadow-md p-4 sm:p-8 bg-white  dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex items-center space-x-4 py-2">
+                <div class="flex-1 min-w-2">
+                    <p class="text-md font-medium text-gray-900 truncate dark:text-white">
+                       Highest sendout in a day
+                    </p>
+                    <p class="text-xs text-gray-500 truncate dark:text-gray-400">
+                        on {{$tech_details->sendout_date->format('dS F Y')}} 
+                    </p>
+                </div>
+                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    {{ number_format($tech_details->highest_sendout, 0, '.', ',')}} MMSCM 
+                </div>
+            </div>
+            <div class="float-right items-baseline text-xs text-blue-900">
+                <a href="{{ route('physicals')}}">More ...</a>
+            </div>
+        </div>
+        <div class="rounded-lg border shadow-md p-4 sm:p-8 bg-white  dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex items-center space-x-4 py-2">
+                <div class="flex-1 min-w-2">
+                    <p class="text-md font-medium text-gray-900 truncate dark:text-white">
+                       Highest truck load in a day
+                    </p>
+                    <p class="text-xs text-gray-500 truncate dark:text-gray-400">
+                        on {{$tech_details->truckload_date->format('dS F Y')}} 
+                    </p>
+                </div>
+                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    {{ number_format($tech_details->highest_truck_no, 0, '.', ',')}} No.
+                </div>
+            </div>
+            <div class="float-right items-baseline text-xs text-blue-900">
+                <a href="{{ route('physicals')}}">More ...</a>
+            </div>
         </div>
     </div>
     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">

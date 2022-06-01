@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\Financial;
 use App\Models\Mcap;
+use App\Models\TechMonthly;
+use App\Models\TechnicalPerformace;
 use Asantibanez\LivewireCharts\Facades\LivewireCharts;
 use Livewire\Component;
 use Livewire\Livewire;
@@ -21,6 +23,9 @@ class Dashboard extends Component
     public $mcap = '';
     public $mcap_date = '';
     public $networth = '';
+    public $throughput = '';
+    public $throughput_period = '';
+    public $tech_details = [];
 
 
     public function mount()
@@ -37,14 +42,18 @@ class Dashboard extends Component
     public function render()
     {
 
-        
-
-       
         $mcap_query = Mcap::latest()->first();
+
+        $throughput_data = TechnicalPerformace::latest()->first();
+
+        $this->tech_details = TechMonthly::where('plant', 'Dahej')->latest()->first();
+    
 
         $this->mcap = $mcap_query->mcap;
         $this->mcap_date = $mcap_query->ason_date;
         $this->networth = $mcap_query->networth;
+        $this->throughput = $throughput_data->throughput;
+        $this->throughput_period = $throughput_data->period;
 
         // $financials = Financial::orderBy('year', 'DESC')->orderBy('qtr', 'DESC')->limit(4)->get();
 
