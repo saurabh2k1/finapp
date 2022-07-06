@@ -6,6 +6,7 @@ use App\Http\Livewire\Mcap;
 use App\Http\Livewire\PhysicalPerformance;
 use App\Http\Livewire\TechnicalPerformance;
 use App\Http\Livewire\UserManagement;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,4 +31,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/user-management', UserManagement::class)->name('user-management');
     Route::get('/technical-performance', TechnicalPerformance::class)->name('technical-performance');
 });
+
+Route::get("log-message", function () {
+
+    $message = "This is a sample message for Test.";
+
+    Log::emergency($message);
+    Log::alert($message);
+    Log::critical($message);
+    Log::error($message);
+    Log::warning($message);
+    Log::notice($message);
+    Log::info($message);
+    Log::debug($message);
+});
+
 
