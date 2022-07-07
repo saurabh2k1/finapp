@@ -34,8 +34,8 @@ class Dashboard extends Component
         $this->oldYear = (date('m') < 7) ? (date('Y') - 2) . '-'  . date('y') - 1 : date('Y') - 1 . '-' . (date('y') - 2);
         $this->years = Financial::select('year')->distinct()->pluck('year');
 
-        // $this->fYear = '2021-22';
-        // $this->oldYear = '2020-21';
+        $this->fYear = '2021-22';
+        $this->oldYear = '2020-21';
     }
 
 
