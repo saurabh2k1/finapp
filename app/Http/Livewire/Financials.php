@@ -48,7 +48,7 @@ class Financials extends Component
         // $this->financials = Financial::all()->sortByDesc('qtr')->sortByDesc('year');
         // return view('livewire.financials');
        
-        return view('livewire.financials', ['financials' => Financial::paginate($this->perPage)]);
+        return view('livewire.financials', ['financials' => Financial::orderBy('id', 'ASC')->paginate($this->perPage)]);
     }
 
     /**

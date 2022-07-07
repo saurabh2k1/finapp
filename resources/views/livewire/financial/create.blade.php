@@ -37,37 +37,37 @@
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="PAT" class="block text-gray-700 text-sm font-bold mb-2">PAT (in INR)</label>
+                            <label for="PAT" class="block text-gray-700 text-sm font-bold mb-2">PAT (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="PAT" placeholder="Enter PAT value in INR" wire:model="PAT">
                             @error('PAT') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="PBT" class="block text-gray-700 text-sm font-bold mb-2">PBT (in INR)</label>
+                            <label for="PBT" class="block text-gray-700 text-sm font-bold mb-2">PBT (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="PBT" placeholder="Enter PBT value in INR" wire:model="PBT">
                             @error('PBT') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="EBITDA" class="block text-gray-700 text-sm font-bold mb-2">EBITDA (in INR)</label>
+                            <label for="EBITDA" class="block text-gray-700 text-sm font-bold mb-2">EBITDA (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="EBITDA" placeholder="Enter EBITDA value in INR" wire:model="EBITDA">
                             @error('EBITDA') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                     
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="revenue" class="block text-gray-700 text-sm font-bold mb-2">Revenue (in INR)</label>
+                            <label for="revenue" class="block text-gray-700 text-sm font-bold mb-2">Revenue (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="revenue" placeholder="Enter revenue value in INR" wire:model="revenue">
                             @error('revenue') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="margin" class="block text-gray-700 text-sm font-bold mb-2">Gross Margin (in INR)</label>
+                            <label for="margin" class="block text-gray-700 text-sm font-bold mb-2">Gross Margin (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="margin" placeholder="Enter margin value in INR" wire:model="margin">
                             @error('margin') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label for="expense" class="block text-gray-700 text-sm font-bold mb-2">Expense (in INR)</label>
+                            <label for="expense" class="block text-gray-700 text-sm font-bold mb-2">Expense (Rupees in lac)</label>
                             <input type="text" class="shadow  appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="expense" placeholder="Enter expense value in INR" wire:model="expense">
                             @error('expense') <span class="text-red-500">{{ $message }}</span>@enderror
                         </div>
