@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'name' => 'PLLFinApp',
+    'name' => 'FINWATCH',
     'manifest' => [
-        'name' => env('APP_NAME', 'My PWA App'),
-        'short_name' => 'PWA',
+        'name' => env('APP_NAME', 'FINWATCH'),
+        'short_name' => 'FINWATCH',
         'id' => '/',
         'start_url' => '/',
         'background_color' => '#ffffff',
@@ -60,8 +60,8 @@ return [
         ],
         'shortcuts' => [
             [
-                'name' => 'Shortcut Link 1',
-                'description' => 'Shortcut Link 1 Description',
+                'name' => 'FINWATCH Link',
+                'description' => 'FINWATCH Link',
                 'url' => '/shortcutlink1',
                 'icons' => [
                     "src" => "/images/icons/icon-72x72.png",
